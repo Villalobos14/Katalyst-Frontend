@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div className=' w-11/12  max-w-[700px] px-10 py-20 rounded-3xl bg-white  '>
+    <div className=' w-11/12  max-w-[700px] px-10 py-20 rounded-3xl bg-white justify-end '>
             <h1 className='text-5xl font-semibold'>Bienvenido de vuelta</h1>
             <p className='font-medium text-lg text-black mt-4'>Entra para ver toda la informacion que tenemos para ti.</p>
             <div className='mt-8'>
