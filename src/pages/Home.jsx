@@ -16,13 +16,13 @@ export default function Home() {
         <div>
           <ul className='flex justify-between gap-x-4 text-[#FFFFFF]'>
             <li className='hover:text-[#ffffffb4]  cursor-pointer duration-300 hover:border-b-2 border-[#ffffffb4]'>Inicio</li>
-            <li className='hover:text-[#ffffffb4]  cursor-pointer duration-300 hover:border-b-2 border-[#ffffffb4]'>Inicio</li>
-            <li className='hover:text-[#ffffffb4]  cursor-pointer duration-300 hover:border-b-2 border-[#ffffffb4]'>Inicio</li>
+            <li className='hover:text-[#ffffffb4]  cursor-pointer duration-300 hover:border-b-2 border-[#ffffffb4]'>Nosotros</li>
+            <li className='hover:text-[#ffffffb4]  cursor-pointer duration-300 hover:border-b-2 border-[#ffffffb4]'>Sistema</li>
           </ul>
         </div>
-        <div className='flex justify-between'>
-          <div>
-            <Link
+        <div className='flex justify-end text-[#FFFFFF] gap-x-5 rounded-2xl border-[#ffffffb4]'>
+          <div className='border-[#ffffffb4]'>
+            <Link className='bg-black py-1.5 px-4 rounded-2xl'
               to="/start">
               Comenzar
             </Link>
