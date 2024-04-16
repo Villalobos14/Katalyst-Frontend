@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home/Home"
+import { Login } from "./pages/Login/Login"
+import { Register } from "./pages/Register/Register"
 import './App.css'
 
 export default function App() {
@@ -7,8 +9,8 @@ export default function App() {
     <Routes>
       <Route>
         {/* Public route */}
-        <Route path="/login" element={<h1>hOLA</h1>} />
-        <Route path="/register" element={<h1>hOLA</h1>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<h1>Not found</h1>} />
 

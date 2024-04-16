@@ -1,0 +1,36 @@
+.login-container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #243026;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .login-subcontainer{
+        width: 90%;
+        height: 80%;
+        background-color: aliceblue;
+        display: flex;
+    }
+
+    .left-part-login{
+        background-color: red;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .left-sc-login{
+            width: 80%;
+            height: 90%;
+            background-color: orange;
+        }
+
+    .right-part-login{
+        width: 50%;
+        height: 100%;
+        background-color: blue;
+    }

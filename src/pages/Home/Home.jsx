@@ -1,12 +1,16 @@
-import './Home.css';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa";
+import './Home.css';
 
 export function Home() {
+
+    const navigate = useNavigate();
+
     return (
         <div className="home-container">
             <div className="navbar-container">
                 <div className="image-logo-home">
-                    <img className='logo-home' src={'src/assets/Logo.png'}></img>
+                    <img className='logo-home' src={'src/assets/Logo.png'} alt='logo'></img>
                 </div>
                 <div className="options-home">
                     <div className="home-home">Inicio</div>
@@ -15,8 +19,8 @@ export function Home() {
                     <div className="home-home">Nosotros</div>
                 </div>
                 <div className="two-buttons-home">
-                    <div className="start-home">Comenzar</div>
-                    <div className="register-home">Registrarme</div>
+                    <div className="start-home" onClick={()=>{navigate("login")}}>Comenzar</div>
+                    <div className="register-home" onClick={()=>{navigate("register")}}>Registrarme</div>
                 </div>
             </div>
             <div className="subcontent-home">
