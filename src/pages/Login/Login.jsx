@@ -21,7 +21,8 @@ export function Login() {
                 "password": password,
             });
             console.log('Respuesta del servidor:', response.data);
-            navigate('/dashboard');
+            if(response.data.status === 200)
+                navigate('/dashboard');
         } catch (error) {
             ShowAlertAssistance({title: "<strong>Ocurrio un error</strong>", message: `<strong>MÁS DETALLES:</strong><br>${error}`, status: "error",})
             console.error('Error al enviar la solicitud:', error);
