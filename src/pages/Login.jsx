@@ -1,7 +1,7 @@
 import React from 'react'
 //import { Link } from 'react-router-dom'
 
-export default function Login() {
+export function Login2() {
   return (
     <div className=' w-11/12  max-w-[700px] px-10 py-20 rounded-3xl bg-white justify-end '>
             <h1 className='text-5xl font-semibold'>Bienvenido de vuelta</h1>

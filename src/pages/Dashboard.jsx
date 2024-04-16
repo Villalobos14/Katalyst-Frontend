@@ -5,7 +5,7 @@ import elect from '../assets/elect.svg'
 import correr from '../assets/correr1.svg'
 import graf from '../assets/grafica.png'
 
-export default function Dashboard() {
+export function Dashboard() {
     return(
         <div className="flex flex-col w-full h-full bg-[#CFCFCF]">
             <div className="flex flex-row">

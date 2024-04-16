@@ -1,8 +1,12 @@
 import { Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home/Home"
 import { Login } from "./pages/Login/Login"
-import { Register } from "./pages/Register/Register"
+// import { Register } from "./pages/Register/Register"
+// import { Home2 } from "./pages/Home"
 import './App.css'
+import { Dashboard } from "./pages/Dashboard"
+import { Register2 } from "./pages/Register"
+import { Login2 } from "./pages/Login"
 
 export default function App() {
   return (
@@ -10,7 +14,8 @@ export default function App() {
       <Route>
         {/* Public route */}
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register2 />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<h1>Not found</h1>} />
 

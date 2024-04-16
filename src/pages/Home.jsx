@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
 
-export default function Home() {
+export function Home2() {
   return (
     <div className='bg-[url("/background.png")] bg-cover'>
       <nav

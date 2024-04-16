@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../assets/Logo.svg'
 import Side from '../assets/david-schultz-R52uFXuPdlE-unsplash 1.png'
-export default function Register() {
+export function Register2() {
   return (
     <div>
       <div className="flex gap-5 max-md:flex-col max-md:gap-0">
