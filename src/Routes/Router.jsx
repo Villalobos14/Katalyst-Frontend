@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Dashboard from '../pages/Dashboard'
+import { DashboardTable } from '../pages/Dashboards/DashboardTable'
 export default function Router() {
     return (
         <BrowserRouter>
@@ -12,6 +13,7 @@ export default function Router() {
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/dashboard' element={<Dashboard/>}/>
+                <Route path='/table' element={<DashboardTable/>}/>
             </Routes>
         </BrowserRouter>
     )

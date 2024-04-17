@@ -5,6 +5,9 @@ import { Register } from "./pages/Register/Register"
 // import { Home2 } from "./pages/Home"
 import './App.css'
 import { Dashboard } from "./pages/Dashboard"
+import { DashboardTable } from "./pages/Dashboards/DashboardTable"
+import { DashboardUsers } from "./pages/Dashboards/DashboardUsers"
+import Settings from "./pages/Settings/Settings"
 // import { Register2 } from "./pages/Register"
 // import { Login2 } from "./pages/Login"
 
@@ -16,6 +19,9 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/table" element={<DashboardTable />} />
+        <Route path="/usertable" element={<DashboardUsers />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<h1>Not found</h1>} />
 
