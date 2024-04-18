@@ -2,6 +2,12 @@ import Logo from '../assets/Logo.svg'
 import temp from '../assets/termometro.svg'
 
 export default function DashboardPanel({ children }) {
+
+    const currentDate = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    const currentMonth = monthNames[currentDate.getMonth()];
+    const currentDay = currentDate.getDate();
     return (
         <div className="flex flex-col w-full h-screen bg-[#CFCFCF]">
             <div className="flex flex-row">
@@ -48,8 +54,8 @@ export default function DashboardPanel({ children }) {
                         <h2 className='font-light text-xl text-[#000]'>Medical Cards</h2>
                         <div className='flex flex-row'>
                             <div className='basis-1/4 flex flex-col justify-center items-center bg-[#2F483E] p-10 pl-12 pr-12'>
-                                <h2 className='text-[#FFF] text-base'>February</h2>
-                                <h2 className='text-[#FFF] text-6xl'>10</h2>
+                                <h2 className='text-[#FFF] text-base'>{currentMonth}</h2>
+                                <h2 className='text-[#FFF] text-6xl'>{currentDay}</h2>
                             </div>
                             <div className='basis-3/4 bg-[#BEBEBE] flex flex-col justify-center p-6 pl-8 pr-8'>
                                 <h2 className='text-base'>Regular checkups</h2>
