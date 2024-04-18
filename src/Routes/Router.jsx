@@ -16,8 +16,8 @@ export default function Router() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/table' element={<DashboardTable />} />
-                <Route path="/usertable" element={<DashboardUsers />} />
+                <Route path='/dashboard/table' element={<DashboardTable />} />
+                <Route path="/dashboard/users" element={<DashboardUsers />} />
                 <Route path="/settings" element={<Settings />} />
             </Routes>
         </BrowserRouter>

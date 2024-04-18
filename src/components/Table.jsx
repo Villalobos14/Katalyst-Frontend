@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const data = [
     {
         date: '20-02-24',
@@ -6,55 +8,199 @@ const data = [
         aceleration: '10',
         status: 'Increible'
     },
-]
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+    {
+        date: '20-02-24',
+        temperature: '36',
+        heartRate: '140',
+        aceleration: '10',
+        status: 'Increible'
+    },
+];
+
+const itemsPerPage = 5;
 
 export default function Table() {
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, data.length);
+    const currentData = data.slice(startIndex, endIndex);
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center justify-end">
                 <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <button
-                        type="button"
-                        className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    >
-                        Add user
-                    </button>
+                    {totalPages > 1 && (
+                        <div className="flex justify-end mt-4">
+                            <button
+                                onClick={handlePrevPage}
+                                disabled={currentPage === 0}
+                                className={`mx-1 px-3 py-1 rounded ${currentPage === 0 ? 'bg-gray-300 text-gray-800' : 'bg-[#527566] text-white'}`}
+                            >
+                                Prev
+                            </button>
+                            <p className='text-white px-4 pt-1.5'>
+                                {currentPage + 1}
+                            </p>
+                            <button
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages - 1}
+                                className={`mx-1 px-3 py-1 rounded ${currentPage === totalPages - 1 ? 'bg-gray-300 text-gray-800' : 'bg-[#527566] text-white'}`}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                            <table className="min-w-full divide-y divide-gray-300">
-                                <thead className="bg-gray-50">
+                        <div className="overflow-hidden  md:rounded-xl">
+                            <table className="min-w-full text-white">
+                                <thead className="bg-[##222222]">
                                     <tr>
-                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left font-thin  sm:pl-6">
                                             Date
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin">
                                             Temperature
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
                                             Heart Rate
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
                                             Aceleration
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
                                             Status
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 bg-white">
-                                    {data.map((data, index) => (
+                                <tbody className="border-transparent bg-[#303633] rounded-t-xl">
+                                    {currentData.map((data, index) => (
                                         <tr key={index}>
-                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 sm:pl-6 ">
                                                 {data.date}
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.temperature} °</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.heartRate} bpm</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.aceleration} km/h</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.status}</td>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                                {data.temperature} °
+                                            </td>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                                {data.heartRate} bpm
+                                            </td>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                                {data.aceleration} km/h
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-[#D9D9D9] ">{data.status}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -64,5 +210,5 @@ export default function Table() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
