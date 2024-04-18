@@ -17,7 +17,10 @@ export default function Profile() {
           </div>
         </div>
       </nav>
-      <img src="/profile.jpg" alt="profilephoto" className="w-40 h-40 rounded-full bg-gray-300 absolute top-3/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover border-white border-4" />
+      <img 
+      src="https://scontent.ftgz2-1.fna.fbcdn.net/v/t39.30808-6/366681108_2263897647140696_7729772342306175147_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=gWDzdQVVKUwAb4cnMM6&_nc_ht=scontent.ftgz2-1.fna&oh=00_AfC-xlL2T3a-2mdClPCqk_UtyHZRVmOZ-stAMlirEuD_dQ&oe=66266EB4" 
+      alt="profilephoto" 
+      className="w-40 h-40 rounded-full bg-gray-300 absolute top-3/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover border-white border-4" />
       <main className='w-screen flex justify-center'>
         <div className='mt-20 w-full justify-center flex flex-col'>
           <div className='text-center'>

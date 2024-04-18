@@ -164,9 +164,9 @@ export default function Table() {
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden  md:rounded-xl">
+                        <div className="overflow-hidden  md:rounded-xl border-[0.1px]">
                             <table className="min-w-full text-white">
-                                <thead className="bg-[##222222]">
+                                <thead className="bg-[#222222]">
                                     <tr>
                                         <th scope="col" className="py-3.5 pl-4 pr-3 text-left font-thin  sm:pl-6">
                                             Date

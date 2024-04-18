@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa";
 import './Home.css';
 
 export default function Home() {
 
-    const navigate = useNavigate();
 
     return (
         <div className="home-container">
@@ -19,8 +18,8 @@ export default function Home() {
                     <div className="home-home">Nosotros</div>
                 </div>
                 <div className="two-buttons-home">
-                    <div className="start-home" onClick={()=>{navigate("login")}}>Comenzar</div>
-                    <div className="register-home" onClick={()=>{navigate("register")}}>Registrarme</div>
+                    <Link to="/login" className="start-home">Comenzar</Link>
+                    <Link to="/register" className="register-home">Registrarme</Link>
                 </div>
             </div>
             <div className="subcontent-home">
@@ -29,9 +28,9 @@ export default function Home() {
                 la atención médica y el bienestar de las personas. Esto puede incluir desde la creación de nuevos medicamentos 
                 y tratamientos hasta el desarrollo de tecnologías que facilitan el acceso a la atención médica. 
                 En resumen, se trata de encontrar soluciones creativas para mejorar la salud de las personas.</div></div>
-                <div className="container-button">
+                <Link to="/dashboard" className="container-button">
                     <div className="button-go-home"><div>Saber más</div><FaArrowRight/></div>
-                </div>
+                </Link>
             </div>
         </div>
     );

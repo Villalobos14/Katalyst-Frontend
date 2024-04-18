@@ -1,75 +1,102 @@
+import { useState } from 'react';
+
 const data = [
     {
-        date: '20-02-24',
-        temperature: '36',
-        heartRate: '140',
-        aceleration: '10',
-        status: 'Increible'
+        id: '1',
+        username: 'Alejandro',
+        email: 'alejandro@gmail.com',
+        celphone: '963837731',
     },
-    {
-        date: '20-02-24',
-        temperature: '36',
-        heartRate: '140',
-        aceleration: '10',
-        status: 'Increible'
-    },
-    {
-        date: '20-02-24',
-        temperature: '36',
-        heartRate: '140',
-        aceleration: '10',
-        status: 'Increible'
-    },
-    
-]
+];
+
+const itemsPerPage = 5;
 
 export default function UserTable() {
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = Math.min(startIndex + itemsPerPage, data.length);
+    const currentData = data.slice(startIndex, endIndex);
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center justify-end">
                 <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <button
-                        type="button"
-                        className="inline-flex items-center justify-center rounded-2xl border border-transparent bg-[#527566] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#31493f] focus:outline-none focus:ring-2 focus:ring-[#31493f] focus:ring-offset-2 sm:w-auto hover:duration-200 hover:scale-105"
-                    >
-                        Add user
-                    </button>
+                    {totalPages > 1 && (
+                        <div className="flex justify-end mt-4">
+                            <button
+                                onClick={handlePrevPage}
+                                disabled={currentPage === 0}
+                                className={`mx-1 px-3 py-1 rounded ${currentPage === 0 ? 'bg-gray-300 text-gray-800' : 'bg-[#527566] text-white'}`}
+                            >
+                                Prev
+                            </button>
+                            <p className='text-white px-4 pt-1.5'>
+                                {currentPage + 1}
+                            </p>
+                            <button
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages - 1}
+                                className={`mx-1 px-3 py-1 rounded ${currentPage === totalPages - 1 ? 'bg-gray-300 text-gray-800' : 'bg-[#527566] text-white'}`}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="mt-8 flex flex-col">
                 <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                            <table className="min-w-full divide-y divide-gray-300">
-                                <thead className="bg-gray-50">
+                        <div className="overflow-hidden  md:rounded-xl border-[0.1px]">
+                            <table className="min-w-full text-white">
+                                <thead className="bg-[#222222]">
                                     <tr>
-                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left font-thin sm:pl-6">
                                             ID
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Nombre de Usuario
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin">
+                                            Nombre de usuario
                                         </th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Correo
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
+                                            Correo electrónico
                                         </th>
-                                        
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
+                                            Teléfono
+                                        </th>
+                                        <th scope="col" className="px-3 py-3.5 text-left font-thin ">
                                             Acciones
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 bg-white">
-                                    {data.map((data, index) => (
-                                        <tr key={index}>
-                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                {data.date}
+                                <tbody className="border-transparent bg-[#CFCFCF] rounded-t-xl">
+                                    {currentData.map((data) => (
+                                        <tr key={data.id}>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 sm:pl-6 ">
+                                                {data.id}
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.heartRate} bpm</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{data.temperature} °</td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"> 
-                                                <button className="bg-[#243026] text-white px-3 py-1 rounded-lg">eliminar</button>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
+                                                {data.username}
                                             </td>
-                                            
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
+                                                {data.email}
+                                            </td>
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
+                                                {data.celphone}
+                                            </td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-[#000000] ">
+                                                Eliminar    
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -79,5 +106,5 @@ export default function UserTable() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
