@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { useState } from 'react';
 import axios from 'axios';
@@ -48,7 +48,9 @@ export default function Register() {
             <div className="register-subcontainer">
                 <div className="left-part-register">
                     <div className="left-sc-register">
-                        <img src={'src/assets/Logo2.png'} alt="logo" width={"20%"} style={{ marginLeft: "-5px" }} />
+                        <Link to="/">
+                            <img src={'src/assets/Logo2.png'} alt="logo" width={"20%"} style={{ marginLeft: "-5px" }} />
+                        </Link>
                         {/* <div className="go-back-register"><FaArrowLeft/></div> */}
                         <div className="title-register">{secondPart && <div onClick={() => { setSecondPart(prevState => !prevState) }}><FaArrowLeft /></div>} {secondPart && <>&nbsp;&nbsp;</>}Create an account</div>
                         <div className="subtitle-register">Registrate para poder ingresar</div>
