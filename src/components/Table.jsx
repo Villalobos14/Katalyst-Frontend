@@ -185,22 +185,22 @@ export default function Table() {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="border-transparent bg-[#303633] rounded-t-xl">
+                                <tbody className="border-transparent bg-[#CFCFCF] rounded-t-xl">
                                     {currentData.map((data, index) => (
                                         <tr key={index}>
-                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 sm:pl-6 ">
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 sm:pl-6 ">
                                                 {data.date}
                                             </td>
-                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
                                                 {data.temperature} °
                                             </td>
-                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
                                                 {data.heartRate} bpm
                                             </td>
-                                            <td className="whitespace-nowrap py-4 text-sm text-gray-50 ">
+                                            <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
                                                 {data.aceleration} km/h
                                             </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-[#D9D9D9] ">{data.status}</td>
+                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-[#000000] ">{data.status}</td>
                                         </tr>
                                     ))}
                                 </tbody>

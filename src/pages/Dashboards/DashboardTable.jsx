@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/Logo.svg'
-import temp from '../../assets/termometro.svg'
 import DashboardPanel from '../../components/DashboardPanel'
 import Table from '../../components/Table'
 
@@ -14,8 +12,8 @@ export default function DashboardTable() {
                         <Link to="/dashboard/table" className='text-[#FFF] text-lg font-bold hover:duration-200 hover:scale-105 hover:border-b-[2px] hover:border-[#FFF] cursor-pointer'>My activity</Link>
                     </div>
                     <div className='flex flex-row gap-3'>
-                        <button className='bg-[#222222] text-[#FFF] hover:duration-200 hover:scale-105 text-lg font-bold border-[1px] border-[#FFF] w-28 h-10 rounded-[30px]'>Profile</button>
-                        <button className='bg-[#527566] text-[#FFF] hover:duration-200 hover:scale-105 text-lg font-bold w-28 h-10 rounded-[30px]'>Admin</button>
+                    <Link to="/dashboard/profile" className='bg-[#222222] text-[#FFF] text-center py-1.5 hover:duration-200 hover:scale-105 text-lg font-bold border-[1px] border-[#FFF] w-28 h-10 rounded-[30px]'>Profile</Link>
+                        <Link to="/dashboard/users" className='bg-[#527566] text-center py-1.5 text-[#FFF] hover:duration-200 hover:scale-105 text-lg font-bold w-28 h-10 rounded-[30px]'>Admin</Link>
                     </div>
                 </div>
                 <main className='mx-32 mt-16'>

@@ -6,7 +6,7 @@ import Register from '../pages/Register/Register'
 import Dashboard from '../pages/Dashboard'
 import DashboardTable from '../pages/Dashboards/DashboardTable'
 import DashboardUsers from '../pages/Dashboards/DashboardUsers'
-import Settings from '../pages/Settings/Settings'
+import Profile from '../pages/Dashboards/Profile'
 
 export default function Router() {
     return (
@@ -18,7 +18,7 @@ export default function Router() {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/dashboard/table' element={<DashboardTable />} />
                 <Route path="/dashboard/users" element={<DashboardUsers />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/dashboard/profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     )
