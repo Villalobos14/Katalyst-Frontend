@@ -5,10 +5,11 @@ import elect from '../assets/elect.svg'
 import correr from '../assets/correr1.svg'
 import graf from '../assets/grafica.png'
 import LineChart from '../pages/Graphics/LineChart'
+import { Link } from 'react-router-dom'
 
-export function Dashboard() {
+export default function Dashboard() {
     return(
-        <div className="flex flex-col w-full h-full bg-[#CFCFCF]">
+        <div className="flex flex-col w-full h-screen bg-[#CFCFCF]">
             <div className="flex flex-row">
                 <div className="flex flex-col items-center justify-start bg-[#243026] basis-1/4 pb-14">
                     <img src={Logo} alt="Logo-Dashboard" className='mt-5'/>
@@ -35,8 +36,8 @@ export function Dashboard() {
                 <div className="flex flex-col bg-[#222222] basis-3/4">
                     <div className='flex mt-5 items-center justify-around gap-32'>
                         <div className='flex flex-row gap-10'>
-                            <a className='text-[#FFF] text-lg font-bold hover:duration-200 hover:scale-105 hover:border-b-[2px] hover:border-[#FFF]'>My health</a>
-                            <a className='text-[#FFF] text-lg font-bold hover:duration-200 hover:scale-105 hover:border-b-[2px] hover:border-[#FFF]'>My activity</a>
+                            <Link to="/dashboard" className='text-[#FFF] text-lg font-bold hover:duration-200 hover:scale-105 hover:border-b-[2px] hover:border-[#FFF] cursor-pointer'>My health</Link>
+                            <Link to="/" className='text-[#FFF] text-lg font-bold hover:duration-200 hover:scale-105 hover:border-b-[2px] hover:border-[#FFF] cursor-pointer'>My activity</Link>
                         </div>
                         <div className='flex flex-row gap-3'>
                             <button className='bg-[#222222] text-[#FFF] hover:duration-200 hover:scale-105 text-lg font-bold border-[1px] border-[#FFF] w-28 h-10 rounded-[30px]'>Profile</button>
@@ -59,7 +60,7 @@ export function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-center gap-36 mt-10'>
+                    <div className='flex ml-28 gap-36 mt-10'>
                         <div className='flex flex-col justify-end pb-5'>
                             <h2 className='font-bold text-xl text-[#FFF]'>Aceleration</h2>
                             <div className='flex'>

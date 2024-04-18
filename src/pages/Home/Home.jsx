@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa";
 import './Home.css';
 
-export function Home() {
+export default function Home() {
 
     const navigate = useNavigate();
 

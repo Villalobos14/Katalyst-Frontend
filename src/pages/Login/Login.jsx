@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { ShowAlertAssistance } from '../../assistances/AlertAssistance/AlertAssistance';
 
-export function Login() {
+export default function Login() {
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

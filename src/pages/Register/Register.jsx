@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ShowAlertAssistance } from '../../assistances/AlertAssistance/AlertAssistance';
 import { FaArrowLeft } from "react-icons/fa";
 
-export function Register() {
+export default function Register() {
     const navigate = useNavigate()
     const [dictionary, setDictionary] = useState({
         email: "",

@@ -3,7 +3,7 @@ import temp from '../../assets/termometro.svg'
 import Table from '../../components/Table'
 import UserTable from '../../components/UserTable'
 
-export function DashboardUsers() {
+export default function DashboardUsers() {
     return (
         <div className="flex flex-col w-full h-full bg-[#CFCFCF]">
             <div className="flex flex-row">

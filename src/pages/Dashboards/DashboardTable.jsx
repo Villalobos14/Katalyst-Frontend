@@ -2,7 +2,7 @@ import Logo from '../../assets/Logo.svg'
 import temp from '../../assets/termometro.svg'
 import Table from '../../components/Table'
 
-export function DashboardTable() {
+export default function DashboardTable() {
     return (
         <div className="flex flex-col w-full h-full bg-[#CFCFCF]">
             <div className="flex flex-row">
