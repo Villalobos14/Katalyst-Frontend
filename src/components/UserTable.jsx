@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
-const data = [
-    {
-        id: '1',
-        username: 'Alejandro',
-        email: 'alejandro@gmail.com',
-        celphone: '963837731',
-    },
-];
+// const data = [
+//     {
+//         id: '1',
+//         username: 'Alejandro',
+//         email: 'alejandro@gmail.com',
+//         activity: 'Runner',
+//     },
+// ];
 
 const itemsPerPage = 5;
 
-export default function UserTable() {
+export default function UserTable({ data, deleteFunction }) {
     const [currentPage, setCurrentPage] = useState(0);
 
     const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -72,7 +72,7 @@ export default function UserTable() {
                                             Correo electrónico
                                         </th>
                                         <th scope="col" className="px-3 py-3.5 text-left font-thin ">
-                                            Teléfono
+                                            Actividad
                                         </th>
                                         <th scope="col" className="px-3 py-3.5 text-left font-thin ">
                                             Acciones
@@ -92,10 +92,12 @@ export default function UserTable() {
                                                 {data.email}
                                             </td>
                                             <td className="whitespace-nowrap py-4 text-sm text-gray-900 ">
-                                                {data.celphone}
+                                                {data.activity}
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-[#000000] ">
-                                                Eliminar    
+                                                <button onClick={() => deleteFunction(data.id)}>
+                                                    Eliminar
+                                                </button>    
                                             </td>
                                         </tr>
                                     ))}

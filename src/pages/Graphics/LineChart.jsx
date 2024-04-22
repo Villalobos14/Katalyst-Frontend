@@ -32,64 +32,45 @@ export const options = {
 
 
 
-export default function LineChart() {
+export default function LineChart( {rtData} ) {
 
     const [sensores, setSensores] = useState({
-        co: 0,
-        gas: 0,
-        humidity: 0,
-        temperature: 0,
-        light: 0,
-    })
+        temperature:0,
+        bpm:0,
+        aceleration:0
+    });
 
     useEffect(() => {
         setSensores({
-            co: 23,
-            gas: 5,
-            humidity: 86,
-            temperature: 43,
-            light: 15,
+            temperature: rtData.temperature,
+            bpm: rtData.bpm,
+            aceleration: rtData.aceleration
         });
-    }, [])
+    }, [rtData]);
 
-    const [co, setCo] = useState([]);
-    const [gas, setGas] = useState([]);
-    const [temperature, setTemperature] = useState([]);
-    const [light, setLight] = useState([]);
     const [time, setHours] = useState([]);
-    const [humidity, setHumidity] = useState([]);
-
+    const [bpm, setBpm] = useState([]);
+    const [aceleration, setAceleration] = useState([]);
+    const [temperature, setTemperature] = useState([]);
 
     const data = {
         labels: time,
         datasets: [
             {
-                label: 'Calidad del aire',
-                data: co,
+                label: 'Aceleración',
+                data: sensores.aceleration,
                 borderColor: '#fff',
                 backgroundColor: '#fff',
             },
             {
-                label: 'Gas',
-                data: gas,
+                label: 'BPM',
+                data: sensores.bpm,
                 borderColor: '#fff',
                 backgroundColor: '#fff',
             },
             {
                 label: 'Temperatura',
-                data: temperature,
-                borderColor: '#fff',
-                backgroundColor: '#fff',
-            },
-            {
-                label: 'Luz',
-                data: light,
-                borderColor: '#fff',
-                backgroundColor: '#fff',
-            },
-            {
-                label: 'Humedad',
-                data: humidity,
+                data: sensores.temperature,
                 borderColor: '#fff',
                 backgroundColor: '#fff',
             }
@@ -101,35 +82,25 @@ export default function LineChart() {
     useEffect(() => {
         const intervalId = setInterval(() => {
             const newHour = new Date().toLocaleTimeString();
-            const newCo = [...co];
-            const newGas = [...gas];
-            const newTemperature = [...temperature];
-            const newLight = [...light];
-            const newHumidity = [...humidity];
+            const newAceleration = [...sensores.aceleration];
+            const newBpm = [...sensores.bpm];
+            const newTemperature = [...sensores.temperature];
             // Si el tamaño del sensor es mayor o igual a 7, eliminamos el primer dato (cola)
-            if (newCo.length >= 7) {
-                newCo.shift();
-                newGas.shift();
+            if (newBpm.length >= 7) {
+                newBpm.shift();
+                newAceleration.shift();
                 newTemperature.shift();
-                newLight.shift();
-                newHumidity.shift();
                 time.shift();
             }
             // Agregamos el nuevo dato al final del arreglo
-            newCo.push(sensores.co);
-            setCo(newCo);
+            newBpm.push(sensores.bpm);
+            setBpm(newBpm);
 
-            newGas.push(sensores.gas);
-            setGas(newGas);
+            newAceleration.push(sensores.aceleration);
+            setAceleration(newAceleration);
 
             newTemperature.push(sensores.temperature);
             setTemperature(newTemperature);
-
-            newLight.push(sensores.light);
-            setLight(newLight);
-
-            newHumidity.push(sensores.humidity);
-            setHumidity(newHumidity);
 
             time.push(newHour);
             setHours(time);
@@ -137,7 +108,7 @@ export default function LineChart() {
 
         // Limpieza del intervalo cuando el componente se desmonte
         return () => clearInterval(intervalId);
-    }, [co, gas, temperature, light]);
+    }, [rtData]);
 
 
     return <Line options={options} data={data} />

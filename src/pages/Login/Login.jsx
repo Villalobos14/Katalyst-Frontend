@@ -16,13 +16,15 @@ export default function Login() {
             return ShowAlertAssistance({ title: "<strong>Campos vacíos</strong>", message: "<strong>MÁS DETALLES:</strong><br>Por favor, rellene todos los campos", status: "error", })
         console.log("Enviando:", email, password, remember)
         try {
-            const response = await axios.post('https://example.com/api/login', {
+            const response = await axios.post('http://34.197.57.0/auth/login', {
                 "email": email,
                 "password": password,
             });
             console.log('Respuesta del servidor:', response.data);
-            if (response.data.status === 200)
-                navigate('/dashboard');
+            const token = response.data.token;
+            if (remember)localStorage.setItem('token', JSON.stringify(token));
+            else sessionStorage.setItem('token', JSON.stringify(token));
+            if (response.data.status === 'success') navigate('/dashboard');
         } catch (error) {
             ShowAlertAssistance({ title: "<strong>Ocurrio un error</strong>", message: `<strong>MÁS DETALLES:</strong><br>${error}`, status: "error", })
             console.error('Error al enviar la solicitud:', error);

@@ -1,5 +1,3 @@
-import Logo from '../assets/Logo.svg'
-import temp from '../assets/termometro.svg'
 import term2 from '../assets/termometro2.svg'
 import elect from '../assets/elect.svg'
 import correr from '../assets/correr1.svg'
@@ -7,15 +5,68 @@ import LineChart from '../pages/Graphics/LineChart'
 import { Link } from 'react-router-dom'
 import DashboardPanel from '../components/DashboardPanel'
 import Alert from '../components/Alert'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { io } from 'socket.io-client';
 
 export default function Dashboard() {
+    const token = JSON.parse(localStorage.getItem('token')) ?? JSON.parse(sessionStorage.getItem('token'));
     
     const [alertObject, setAlertObject] = useState({
         'isActive': false,
         'title': 'Temperature',
         'message': 'The temperature has exceeded normal limits, you need to cool down',
     });
+
+    const [medData, setMedData] = useState({
+        'temperature': '36.6',
+        'heartRate': '110',
+        'aceleration': '10',
+    });
+
+    const socket = io('184.72.246.90',{
+        auth:{
+            token: token
+        },
+        headers: {
+            'access_token': token,
+        }
+    });
+
+
+    useEffect(() => {
+        console.log(token)
+        socket.on('notification:medical', (data) => {
+          console.log('notification:medical', data);
+          if (data != null) {
+            setMedData(prevMedData => ({
+                ...prevMedData,
+                'temperature': data.temperature.toFixed(2),
+                'heartRate': data.BPM.toFixed(2),
+                'aceleration': data.accelerationZ.toFixed(2),
+            }));
+            
+            const temperature = parseFloat(data.temperature);
+            if (temperature > 37) {
+              setAlertObject({
+                'isActive': true,
+                'title': 'Temperature',
+                'message': 'La temperatura ha excedido los límites normales, necesitas enfriarte o consultar a un médico',
+              });
+            } else if(temperature < 35) {
+              setAlertObject({
+                'isActive': true,
+                'title': 'Temperature',
+                'message': 'La temperatura presenta valores bajos, necesitas calentarte o consultar a un médico',
+              });
+            }
+          }
+        });
+    
+        // Cleanup function if needed
+        return () => {
+          socket.off('notification:medical');
+        };
+      }, [socket]);
 
 
     return (
@@ -40,14 +91,14 @@ export default function Dashboard() {
                                     <h2 className='font-bold text-xl text-[#FFF]'>Temperature</h2>
                                     <div className='flex'>
                                         <img src={term2} alt="Temperatura" />
-                                        <h2 className='text-[#FFF] font-normal text-6xl'>36.6 °</h2>
+                                        <h2 className='text-[#FFF] font-normal text-6xl'>{medData.temperature} °</h2>
                                     </div>
                                 </div>
                                 <div className='flex flex-col'>
                                     <h2 className='font-bold text-xl text-[#FFF]'>Heart Rate</h2>
                                     <div className='flex row'>
                                         <img src={elect} alt="Electrocardiograma" />
-                                        <h2 className='text-[#FFF] font-normal text-6xl'>110 <span className='text-sm text-[#FFF] font-light'>BPM</span></h2>
+                                        <h2 className='text-[#FFF] font-normal text-6xl'>{medData.heartRate} <span className='text-sm text-[#FFF] font-light'>BPM</span></h2>
                                     </div>
                                 </div>
                             </div>
@@ -58,12 +109,12 @@ export default function Dashboard() {
                                     <h2 className='font-bold text-xl text-[#FFF]'>Aceleration</h2>
                                     <div className='flex'>
                                         <img src={correr} alt="Correr" />
-                                        <h2 className='text-[#FFF] font-normal text-6xl'>10 <span className='text-sm text-[#FFF] font-light'>Km/h</span></h2>
+                                        <h2 className='text-[#FFF] font-normal text-6xl'>{medData.aceleration} <span className='text-sm text-[#FFF] font-light'>Km/h</span></h2>
                                     </div>
                                 </div>
                                 <div className='flex flex-col'>
                                     <div className='mt-12'>
-                                        <LineChart />
+                                        <LineChart rtData={medData} />
                                     </div>
                                 </div>
                             </div>

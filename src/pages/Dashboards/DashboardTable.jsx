@@ -1,8 +1,48 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DashboardPanel from '../../components/DashboardPanel'
 import Table from '../../components/Table'
+import axios from 'axios'
 
 export default function DashboardTable() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await axios.get('http://44.221.150.52/medical/data', {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const formattedData = response.data.data.map(item => {
+                    // Convertir la fecha de UTC a la hora de México
+                    const utcDate = new Date(item.date);
+                    const mexicoDate = new Date(utcDate.toLocaleString("en-US", {timeZone: "America/Mexico_City"}));
+                    
+                    // Formatear la fecha
+                    const formattedDate = `${mexicoDate.getDate()}-${mexicoDate.getMonth() + 1}-${mexicoDate.getFullYear()} - ${mexicoDate.getHours()}:${mexicoDate.getMinutes()}:${mexicoDate.getSeconds()}`;
+
+                    return {
+                        temperature: item.temperature,
+                        heartRate: item.bpm,
+                        aceleration: item.aceleration,
+                        date: formattedDate,
+                        status: item.status
+                    };
+                }).reverse(); // Cambiar el orden del array
+
+                setData(formattedData);
+            } catch (error) {
+                console.error('Error al obtener los datos:', error)
+            }
+        }
+
+        getData();
+    }, []);
+
     return (
         <DashboardPanel>
             <div className="flex flex-col bg-[#222222] basis-3/4">
@@ -17,7 +57,7 @@ export default function DashboardTable() {
                     </div>
                 </div>
                 <main className='mx-32 mt-16'>
-                    <Table />
+                    <Table data={data} />
                 </main>
             </div>
         </DashboardPanel>

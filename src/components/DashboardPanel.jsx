@@ -1,8 +1,51 @@
 import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.svg'
 import temp from '../assets/termometro.svg'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 export default function DashboardPanel({ children }) {
+    const handleLogout = async () => {
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+    }
+
+    const [profile, setProfile] = useState({
+        name: '',
+        lastName: '',
+        age: '',
+        height: '',
+        weight: '',
+        activity: '',
+    });
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem('token')) ?? JSON.parse(sessionStorage.getItem('token'));
+        
+        const getProfile = async () => { 
+            const response = await axios.get("http://34.197.57.0/users/profile", {
+                headers: {
+                    'Authorization': token,
+                },
+            });
+
+            const responseDataUser = response.data.data.user
+
+            console.log('data:', response.data.data.user);
+
+            setProfile({
+                name: responseDataUser.name,
+                lastName: responseDataUser.lastname,
+                age: responseDataUser.age,
+                height: responseDataUser.height,
+                weight: responseDataUser.weight,
+                activity: responseDataUser.activity,
+            });
+        }
+
+        getProfile();
+    }, [])
 
     const currentDate = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -20,21 +63,21 @@ export default function DashboardPanel({ children }) {
                             src="https://scontent.ftgz2-1.fna.fbcdn.net/v/t39.30808-6/366681108_2263897647140696_7729772342306175147_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=gWDzdQVVKUwAb4cnMM6&_nc_ht=scontent.ftgz2-1.fna&oh=00_AfC-xlL2T3a-2mdClPCqk_UtyHZRVmOZ-stAMlirEuD_dQ&oe=66266EB4"
                             alt="profile-photo" />
                     </div>
-                    <h2 className="text-[#FFFFFF] text-2xl font-light mt-6">Alejandro Villalobos</h2>
-                    <h3 className="text-[#FFFFFF] text-lg font-light mt-3">Runner</h3>
+                    <h2 className="text-[#FFFFFF] text-2xl font-light mt-6">{`${profile.name} ${profile.lastName}`}</h2>
+                    <h3 className="text-[#FFFFFF] text-lg font-light mt-3">{profile.activity}</h3>
                     <div className="flex justify-between w-[275px] mt-5">
                         <h2 className="text-[#FFF] text-2xl font-normal">Age</h2>
-                        <h2 className="text-[#FFF] text-2xl font-normal">20</h2>
+                        <h2 className="text-[#FFF] text-2xl font-normal">{profile.age}</h2>
                     </div>
                     <div className="flex flex-col mt-5">
                         <div className="flex flex-row justify-between">
                             <h2 className="text-[#FFF] text-2xl font-normal">Height</h2>
-                            <h2 className="text-[#FFF] text-2xl font-normal">180.0 cm</h2>
+                            <h2 className="text-[#FFF] text-2xl font-normal">{`${profile.height} cm`}</h2>
                         </div>
                         <hr className="w-[275px] h-[1px] bg-[#FFF] mt-3" />
                         <div className="flex flex-row justify-between mt-3">
                             <h2 className="text-[#FFF] text-2xl font-normal">Weight</h2>
-                            <h2 className="text-[#FFF] text-2xl font-normal">65 kg</h2>
+                            <h2 className="text-[#FFF] text-2xl font-normal">{`${profile.weight} kg`}</h2>
                         </div>
                         <hr className="w-[275px] h-[1px] bg-[#FFF] mt-3" />
                     </div>
@@ -47,7 +90,7 @@ export default function DashboardPanel({ children }) {
                         <h2 className='text-[#000] text-xl mt-4 font-light'>Doctors</h2>
                         <hr className='w-[206px] bg-[#000] h-[2px] mt-2' />
                         <h2 className='leading-4 font-light mt-4'><span className='text-2xl'>Doctor James Harden </span> <br /> <span>Medical Center</span></h2>
-                        <Link to="/" className='text-[#000] font-semibold text-2xl mt-8'>Log out</Link>
+                        <Link to="/" onClick={handleLogout} className='text-[#000] font-semibold text-2xl mt-8'>Log out</Link>
                     </div>
                 </div>
                 <div className='flex flex-row justify-between items-center basis-3/4'>

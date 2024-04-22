@@ -25,14 +25,14 @@ export default function Register() {
             return ShowAlertAssistance({ title: "<strong>Campos vacíos</strong>", message: "<strong>MÁS DETALLES:</strong><br>Por favor, rellene todos los campos", status: "error", })
         console.log("Enviando:", dictionary.email, dictionary.password, dictionary.name, dictionary.lastname, dictionary.age, dictionary.activity, dictionary.frecuency, remember)
         try {
-            const response = await axios.post('https://example.com/api/register', {
+            const response = await axios.post('http://34.197.57.0/users/register', {
                 "email": dictionary.email,
                 "password": dictionary.password,
                 "name": dictionary.name,
                 "lastname": dictionary.lastname,
                 "age": dictionary.age,
                 "activity": dictionary.activity,
-                "frecuency": dictionary.frecuency,
+                "frequency": dictionary.frecuency,
             });
             console.log('Respuesta del servidor:', response.data);
             if (response.data.status === 200 || response.data.status === 201)

@@ -1,8 +1,53 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DashboardPanel from '../../components/DashboardPanel'
 import UserTable from '../../components/UserTable'
+import axios from 'axios'
 
 export default function DashboardUsers() {
+    const [users, setUsers ] = useState([]);
+    const token = JSON.parse(localStorage.getItem('token')) ?? JSON.parse(sessionStorage.getItem('token'));
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const response = await axios.get('http://34.197.57.0/users', {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Authorization': token,
+                    }
+                });
+
+                const usersResponse = response.data.data.users;
+
+                setUsers(
+                    usersResponse.map( user => {
+                            return {
+                                id: user.id,
+                                username: `${user.name} ${user.lastname}`,
+                                email: user.email,
+                                activity: user.activity
+                            }
+                        }
+                    )
+                );
+            } catch (error) {
+                console.error('Error al obtener los datos:', error)
+            }
+        }
+
+        getData();
+    }, []);
+
+    const handleDeleteUser = async (id) => {
+        const response = axios.delete(`http://34.197.57.0/management/${id}`,{
+            headers:{
+                'Authorization': token
+            }
+        });
+    }
+
     return (
 
         <DashboardPanel>
@@ -18,7 +63,7 @@ export default function DashboardUsers() {
                     </div>
                 </div>
                 <main className='mx-32 mt-16'>
-                    <UserTable />
+                    <UserTable data={users} deleteFunction={handleDeleteUser} />
                 </main>
             </div>
         </DashboardPanel>
